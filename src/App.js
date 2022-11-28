@@ -1,11 +1,48 @@
-import './App.scss';
+import React, { useState, useEffect } from "react";
+import "./App.scss";
+import Carousel, { CarouselItem } from "./components/carousel/Carousel";
 
 function App() {
-  return (
-    <div className="App">
-      Hello World
-    </div>
-  );
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await fetch(
+        "https://graditest-store.myshopify.com/products/free-trainer-3-mmw.json"
+      );
+      const json = await res.json();
+      setProduct(json.product);
+    };
+
+    fetchProduct();
+  }, []);
+  if (Object.keys(product).length !== 0) {
+    return (
+      <div className="App">
+        <Carousel>
+          {product.images &&
+            product.images.map((image, index) => {
+              return (
+                <CarouselItem key={index}>
+                  <img src={image.src} />
+                </CarouselItem>
+              );
+            })}
+        </Carousel>
+        <div>
+          <h3>{product.vendor}</h3>
+          <h1>{product.title}</h1>
+          <h2>
+            {product.price} <span>{product.compare_at_price}</span>
+          </h2>
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: product.body_html }} />
+      </div>
+    );
+  } else {
+    return <div className="App"></div>;
+  }
 }
 
 export default App;
+

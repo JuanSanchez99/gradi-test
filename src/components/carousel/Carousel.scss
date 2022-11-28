@@ -1,0 +1,34 @@
+.carousel {
+    overflow: hidden;
+    .inner{
+        white-space: nowrap;
+        transition: transform 0.3s;
+        .carousel-item{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                width: 100%;
+            }
+        }
+    }
+    .pagination{
+        display: flex;
+        justify-content: center;
+        >div{
+            margin: 5px;
+            .point{
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 100%;
+                background-color: #dddddd;
+            }
+            &.active{
+                >.point{
+                    background: #000;
+                }
+            }
+        }
+    }
+}
