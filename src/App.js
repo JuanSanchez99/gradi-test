@@ -22,7 +22,7 @@ function App() {
       <div className="App">
         <Carousel>
           {product.images &&
-            product.images.map(image => {
+            product.images.map((image) => {
               return (
                 <CarouselItem key={image.id}>
                   <img src={image.src} />
@@ -30,12 +30,10 @@ function App() {
               );
             })}
         </Carousel>
-        <div>
+        <div className="product-head">
           <h3>{product.vendor}</h3>
           <h1>{product.title}</h1>
-          <h2>
-            {product.price} <span>{product.compare_at_price}</span>
-          </h2>
+          <h2>Price</h2>
         </div>
         <ProductForm options={product.options} />
         <div dangerouslySetInnerHTML={{ __html: product.body_html }} />

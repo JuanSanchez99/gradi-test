@@ -1,0 +1,19 @@
+.button {
+  text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+  background: #f8f6f7;
+  border: solid 1px #ccc;
+  &.black{
+    background: #000;
+    color: #fff;
+  }
+}
+
+.buttons{
+    display: flex;
+    flex-wrap: wrap;
+    .button{
+        width: 100%;
+    }
+}

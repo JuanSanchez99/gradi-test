@@ -1,15 +1,18 @@
 .form {
   .type {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-top: solid 1px #ccc;
     .type-list {
       margin-left: 20px;
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(20px, 1fr));
+      gap: 20px;
       .color {
         width: 20px;
         height: 20px;
         display: block;
-        border: solid 1px #ccc;
         border-radius: 100%;
         margin: 0 10px;
         &.selected {
@@ -26,17 +29,50 @@
       .size {
         color: #ccc;
         border: solid 1px #ccc;
-        text-align: center;
-        padding: 20px;
-        &.selected{
-            border-color: #000;
-            color: #000;
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        &.selected {
+          border-color: #000;
+          color: #000;
+        }
+        input {
+          display: none;
         }
       }
     }
   }
-  .form-foot{
+  .form-foot {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-top: solid 1px #ccc;
+    .quantity,
+    .total {
+      flex: 1;
+    }
+    .total {
+      text-align: end;
+    }
+    .quantity {
+      display: flex;
+      border: solid 1px #ccc;
+      padding: 10px;
+      max-width: 120px;
+      input {
+        flex: 3;
+        border: none;
+        text-align: center;
+        width: 20px;
+      }
+      span {
+        flex: 1;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
   }
 }
