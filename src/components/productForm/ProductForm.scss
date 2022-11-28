@@ -1,0 +1,42 @@
+.form {
+  .type {
+    display: flex;
+    align-items: center;
+    .type-list {
+      margin-left: 20px;
+      display: flex;
+      .color {
+        width: 20px;
+        height: 20px;
+        display: block;
+        border: solid 1px #ccc;
+        border-radius: 100%;
+        margin: 0 10px;
+        &.selected {
+          &::after {
+            content: " ";
+            display: inline-block;
+            border: solid 1px #000;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+          }
+        }
+      }
+      .size {
+        color: #ccc;
+        border: solid 1px #ccc;
+        text-align: center;
+        padding: 20px;
+        &.selected{
+            border-color: #000;
+            color: #000;
+        }
+      }
+    }
+  }
+  .form-foot{
+    display: flex;
+    justify-content: space-between;
+  }
+}

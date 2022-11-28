@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Carousel, { CarouselItem } from "./components/carousel/Carousel";
+import ProductForm from "./components/productForm/ProductForm";
 
 function App() {
   const [product, setProduct] = useState({});
@@ -21,9 +22,9 @@ function App() {
       <div className="App">
         <Carousel>
           {product.images &&
-            product.images.map((image, index) => {
+            product.images.map(image => {
               return (
-                <CarouselItem key={index}>
+                <CarouselItem key={image.id}>
                   <img src={image.src} />
                 </CarouselItem>
               );
@@ -36,6 +37,7 @@ function App() {
             {product.price} <span>{product.compare_at_price}</span>
           </h2>
         </div>
+        <ProductForm options={product.options} />
         <div dangerouslySetInnerHTML={{ __html: product.body_html }} />
       </div>
     );
@@ -45,4 +47,3 @@ function App() {
 }
 
 export default App;
-
