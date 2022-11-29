@@ -4,7 +4,7 @@ import Button, { Buttons } from "../button/Button";
 
 import "./ProductForm.scss";
 
-const ProductForm = ({ options, changeVariant, variant }) => {
+const ProductForm = ({ options, changeVariant, variant, addCart }) => {
   const [formData, updateFormData] = useState({
     option1: variant.option1,
     option2: variant.option2,
@@ -26,7 +26,7 @@ const ProductForm = ({ options, changeVariant, variant }) => {
   // Send Form
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    addCart(formData.quantity)
   };
 
   // Change Price
@@ -56,6 +56,7 @@ const ProductForm = ({ options, changeVariant, variant }) => {
               data={formData.option2}
             />
           );
+        return null
       })}
       <div className="form-foot">
         <QuantityType onChangeInput={handleQuantity} />

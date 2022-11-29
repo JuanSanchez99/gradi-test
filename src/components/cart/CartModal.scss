@@ -16,6 +16,9 @@
             margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
+            span{
+                cursor: pointer;
+            }
         }
         .modal-body{
             .product-list{
@@ -23,6 +26,9 @@
                     display: flex;
                     figure{
                         margin-right: 10px;
+                        img{
+                            max-width: 100px;
+                        }
                     }
                     .product-info{
                         h4{

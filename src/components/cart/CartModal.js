@@ -1,35 +1,46 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../../context/cartContext/CartContext";
 import Button from "../button/Button";
 import "./CartModal.scss";
+import { formatNumber } from "../../utils";
 
-function CartModal({ isOpen }) {
+function CartModal({ isOpen, setIsOpen }) {
+  const cart = useContext(CartContext);
   if (!isOpen) {
     return null;
   }
   return (
-    <div className="modal">
+    <div role="modal" className="modal" onClick={() => setIsOpen(false)}>
       <div className="modal-content">
         <div className="modal-header">
           <h2>Shopping Cart</h2>
-          <span>X</span>
         </div>
         <div className="modal-body">
           <div className="product-list">
-            <div className="product">
-              <figure>
-                <img src="https://picsum.photos/100" />
-              </figure>
-              <div className="product-info">
-                <h4>Name</h4>
-                <p>variant</p>
-                <p>quantity</p>
-                <p>price</p>
-              </div>
-            </div>
+            {cart.map((item, index) => {
+              console.log(item);
+              return (
+                <div key={index} className="product">
+                  <figure>
+                    <img src={item.img} alt={`product_image_${item.product_id}`} />
+                  </figure>
+                  <div className="product-info">
+                    <h4>{item.name}</h4>
+                    <p>Type: {item.variant}</p>
+                    <p>Quantity: {item.quantity}</p>
+                    <p>Total: {formatNumber(item.price, item.quantity)}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="modal-footer">
-          <Button type="black full-width">Checkout</Button>
+          {cart.length ? (
+            <Button type="black full-width">Checkout</Button>
+          ) : (
+            <h3>Cart is Empty</h3>
+          )}
         </div>
       </div>
     </div>
