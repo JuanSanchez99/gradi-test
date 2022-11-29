@@ -32,12 +32,12 @@ function Product() {
       img: product.image.src,
       price: variantSelected.price,
       quantity: qty,
-    }
+    };
     dispatch({
       type: "add-cart",
-      cartItem: item
-    })
-    setIsOpen(true)
+      cartItem: item,
+    });
+    setIsOpen(true);
   };
 
   useEffect(() => {
@@ -59,38 +59,39 @@ function Product() {
 
   return (
     <div className="App">
-      <nav>
-        <span onClick={() => setIsOpen(true)}>Cart</span>
-      </nav>
-      <Carousel>
-        {product.images &&
-          product.images.map((image) => {
-            return (
-              <CarouselItem key={image.id}>
-                <img src={image.src} alt={`image_${image.alt}`} />
-              </CarouselItem>
-            );
-          })}
-      </Carousel>
-      <div className="product-head">
-        <h3>{product.vendor}</h3>
-        <h1>{product.title}</h1>
-        <h2>
-          {formatNumber(variantSelected.price)}
-          <span>{formatNumber(variantSelected.compare_at_price)}</span>
-        </h2>
-      </div>
-      <ProductForm
-        options={product.options}
-        changeVariant={changeVariant}
-        variant={variantSelected}
-        addCart={addCart}
-      />
-      <div
-        className="description"
-        dangerouslySetInnerHTML={{ __html: product.body_html }}
-      />
-      <CartModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <section className="product-section">
+        <Carousel>
+          {product.images &&
+            product.images.map((image) => {
+              return (
+                <CarouselItem key={image.id}>
+                  <img src={image.src} alt={`image_${image.alt}`} />
+                </CarouselItem>
+              );
+            })}
+        </Carousel>
+        <section className="product-info">
+          <div className="product-head">
+            <h3>{product.vendor}</h3>
+            <h1>{product.title}</h1>
+            <h2>
+              {formatNumber(variantSelected.price)}
+              <span>{formatNumber(variantSelected.compare_at_price)}</span>
+            </h2>
+          </div>
+          <ProductForm
+            options={product.options}
+            changeVariant={changeVariant}
+            variant={variantSelected}
+            addCart={addCart}
+          />
+          <div
+            className="description"
+            dangerouslySetInnerHTML={{ __html: product.body_html }}
+          />
+          <CartModal isOpen={isOpen} setIsOpen={setIsOpen} />
+        </section>
+      </section>
     </div>
   );
 }

@@ -9,6 +9,7 @@
         }
     }
     .product-head{
+        margin-bottom: 35px;
         h3{
             font-size: 16px;
             color: #ccc;
@@ -29,5 +30,26 @@
     }
     .description{
         margin-top: 20px;
+    }
+}
+
+
+// Tablet styles
+@media screen and (min-width: 768px) {
+    .App{
+        .product-section{
+            display: flex;
+            gap: 20px;
+            .carousel, .product-info{
+                flex: 1;
+            }
+        }
+    }
+}
+
+// Desktop styles
+@media screen and (min-width: 1024px) {
+    .App{
+        margin: 40px;
     }
 }

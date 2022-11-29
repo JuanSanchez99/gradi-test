@@ -1,34 +1,62 @@
 .carousel {
-    overflow: hidden;
-    .inner{
-        white-space: nowrap;
-        transition: transform 0.3s;
-        .carousel-item{
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            img{
-                width: 100%;
-            }
-        }
+  overflow: hidden;
+  .inner {
+    white-space: nowrap;
+    transition: transform 0.3s;
+    .carousel-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 100%;
+      }
     }
-    .pagination{
-        display: flex;
-        justify-content: center;
-        >div{
-            margin: 5px;
-            .point{
-                display: inline-block;
-                width: 10px;
-                height: 10px;
-                border-radius: 100%;
-                background-color: #dddddd;
-            }
-            &.active{
-                >.point{
-                    background: #000;
-                }
-            }
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    > div {
+      margin: 5px;
+      .point {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: #dddddd;
+      }
+      .carousel-item {
+        display: none;
+      }
+      &.active {
+        > .point {
+          background: #000;
         }
+      }
     }
+  }
+}
+
+// Desktop styles
+@media screen and (min-width: 1024px) {
+  .carousel {
+    .pagination {
+      > div {
+        flex: 1;
+        .point {
+          display: none;
+        }
+        .carousel-item {
+          display: block;
+          img {
+            width: 100%;
+          }
+        }
+        &.active {
+          .carousel-item {
+            border: solid 1px #ccc;
+          }
+        }
+      }
+    }
+  }
 }

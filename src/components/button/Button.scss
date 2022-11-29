@@ -4,6 +4,7 @@
   margin: 10px 0;
   background: #f8f6f7;
   border: solid 1px #ccc;
+  font-size: 20px;
   &.black{
     background: #000;
     color: #fff;
@@ -19,4 +20,15 @@
     .button{
         width: 100%;
     }
+}
+
+
+@media screen and (min-width: 1024px) {
+  .buttons{
+    gap: 5px;
+    .button{
+        width: auto;
+        flex: 1;
+    }
+}
 }

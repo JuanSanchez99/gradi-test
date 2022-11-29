@@ -43,7 +43,7 @@ const Carousel = ({ children }) => {
           return(
             <div className={index===activeIndex ? "active": ""} onClick={()=> updateIndex(index)}>
               <span className="point"></span>
-              {/* {child} */}
+              {React.cloneElement(child)}
             </div>
           )
         })}

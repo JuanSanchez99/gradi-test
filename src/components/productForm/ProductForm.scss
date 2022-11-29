@@ -2,7 +2,7 @@
   .type {
     display: flex;
     align-items: flex-start;
-    padding: 20px 0;
+    padding: 30px 0;
     border-top: solid 1px #ccc;
     .type-list {
       margin-left: 20px;
@@ -64,16 +64,31 @@
     }
     .total {
       text-align: end;
+      span{
+        font-weight: bold;
+      }
     }
     .quantity {
       display: flex;
       border: solid 1px #ccc;
       padding: 10px;
-      max-width: 120px;
+      max-width: 100px;
       span {
         flex: 1;
         text-align: center;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+// Desktop styles
+@media screen and (min-width: 1024px) {
+  .form {
+    .type {
+      .type-list {
+        display: flex;
+        gap: 20px;
       }
     }
   }

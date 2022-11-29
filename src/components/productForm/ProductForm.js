@@ -60,9 +60,9 @@ const ProductForm = ({ options, changeVariant, variant, addCart }) => {
       })}
       <div className="form-foot">
         <QuantityType onChangeInput={handleQuantity} />
-        <span className="total">
-          Total Price: {formatNumber(variant.price, formData.quantity)}
-        </span>
+        <p className="total">
+          Total Price: <span>{formatNumber(variant.price, formData.quantity)}</span>
+        </p>
       </div>
       <Buttons>
         <Button>Add to favourite</Button>
