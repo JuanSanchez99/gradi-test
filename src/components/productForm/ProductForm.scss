@@ -15,15 +15,23 @@
         display: block;
         border-radius: 100%;
         margin: 0 10px;
+        position: relative;
         &.selected {
-          &::after {
+          &::before {
             content: " ";
             display: inline-block;
             border: solid 1px #000;
             width: 30px;
             height: 30px;
             border-radius: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
           }
+        }
+        input {
+          display: none;
         }
       }
       .size {
@@ -62,12 +70,6 @@
       border: solid 1px #ccc;
       padding: 10px;
       max-width: 120px;
-      input {
-        flex: 3;
-        border: none;
-        text-align: center;
-        width: 20px;
-      }
       span {
         flex: 1;
         text-align: center;

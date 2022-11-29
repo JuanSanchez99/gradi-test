@@ -1,58 +1,98 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { formatNumber } from "../../utils";
 import Button, { Buttons } from "../button/Button";
 
 import "./ProductForm.scss";
 
-const ProductForm = ({ options }) => {
-  const [formData, updateFormData] = React.useState({});
+const ProductForm = ({ options, changeVariant, variant }) => {
+  const [formData, updateFormData] = useState({
+    option1: variant.option1,
+    option2: variant.option2,
+  });
+  // Get data from inputs
   const handleChange = (e) => {
     updateFormData({
       ...formData,
-
-      // Trimming any whitespace
       [e.target.name]: e.target.value.trim(),
     });
   };
+  // Get Quantity input
+  const handleQuantity = (quantity) => {
+    updateFormData({
+      ...formData,
+      quantity: quantity,
+    });
+  };
+  // Send Form
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
   };
 
+  // Change Price
+  useEffect(() => {
+    changeVariant(formData);
+  }, [formData]);
   return (
     <form className="form" onSubmit={handleSubmit}>
       {options.map((item) => {
         if (item.name === "Color")
-          return <ColorType key={item.id} values={item.values} onChange={handleChange} />;
+          return (
+            <ColorType
+              key={item.id}
+              values={item.values}
+              name={`option${item.position}`}
+              onChangeInput={handleChange}
+              data={formData.option1}
+            />
+          );
         else if (item.name === "Size")
-          return <SizeType key={item.id} values={item.values} onChange={handleChange} />;
+          return (
+            <SizeType
+              key={item.id}
+              values={item.values}
+              name={`option${item.position}`}
+              onChangeInput={handleChange}
+              data={formData.option2}
+            />
+          );
       })}
       <div className="form-foot">
-        <QuantityType onChange={handleChange} />
-        <span className="total">Total Price: </span>
+        <QuantityType onChangeInput={handleQuantity} />
+        <span className="total">
+          Total Price: {formatNumber(variant.price, formData.quantity)}
+        </span>
       </div>
       <Buttons>
         <Button>Add to favourite</Button>
-        <Button type="black" submit>Add to cart</Button>
+        <Button type="black" submit>
+          Add to cart
+        </Button>
       </Buttons>
     </form>
   );
 };
 
-const ColorType = ({ values }) => {
+const ColorType = ({ values, onChangeInput, name, data }) => {
   return (
     <div className="type">
       <p>Color:</p>
       <div className="type-list">
         {values.map((item, index) => {
           return (
-            <input
+            <label
               key={index}
-              className="color"
-              type="radio"
-              name="color"
               style={{ background: item }}
-              value={item}
-            />
+              className={`color ${data === item && "selected"}`}
+            >
+              <input
+                type="radio"
+                name={name}
+                value={item}
+                onChange={onChangeInput}
+                checked={data === item}
+              />
+            </label>
           );
         })}
       </div>
@@ -60,15 +100,24 @@ const ColorType = ({ values }) => {
   );
 };
 
-const SizeType = ({ values }) => {
+const SizeType = ({ values, onChangeInput, name, data }) => {
   return (
     <div className="type">
       <p>Size: </p>
       <div className="type-list">
         {values.map((item, index) => {
           return (
-            <label key={index} className="size">
-              <input type="radio" name="size" value={item} />
+            <label
+              key={index}
+              className={`size ${data === item && "selected"}`}
+            >
+              <input
+                type="radio"
+                name={name}
+                value={item}
+                onChange={onChangeInput}
+                checked={data === item}
+              />
               {item}
             </label>
           );
@@ -78,12 +127,15 @@ const SizeType = ({ values }) => {
   );
 };
 
-const QuantityType = () => {
+const QuantityType = ({ onChangeInput }) => {
   const [qty, setQty] = useState(1);
+  useEffect(() => {
+    onChangeInput(qty);
+  }, [qty]);
   return (
     <div className="quantity">
-      <span onClick={() => setQty(qty - 1)}>-</span>
-      <input type="text" value={qty} />
+      <span onClick={() => qty > 0 && setQty(qty - 1)}>-</span>
+      <span>{qty}</span>
       <span onClick={() => setQty(qty + 1)}>+</span>
     </div>
   );

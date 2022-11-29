@@ -10,5 +10,16 @@
             color: #000;
             margin: 10px 0;
         }
+        h2{
+            span{
+                margin: 10px;
+                font-size: 20px;
+                color: #ccc;
+                text-decoration: line-through;
+            }
+        }
+    }
+    .description{
+        margin-top: 20px;
     }
 }
