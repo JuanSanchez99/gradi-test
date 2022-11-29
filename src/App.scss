@@ -51,5 +51,8 @@
 @media screen and (min-width: 1024px) {
     .App{
         margin: 40px;
+        .product-section{
+            gap: 50px;
+        }
     }
 }

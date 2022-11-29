@@ -37,7 +37,7 @@ function CartModal({ isOpen, setIsOpen }) {
         </div>
         <div className="modal-footer">
           {cart.length ? (
-            <Button type="black full-width">Checkout</Button>
+            <Button type="full-width" onClick={() => setIsOpen(false)}>Close</Button>
           ) : (
             <h3>Cart is Empty</h3>
           )}
